@@ -5,45 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
     <style>
-        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; position: relative; }
+        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
         
-        /* Floating Heart Animation */
+        /* Floating Background Hearts */
         .heart { position: absolute; color: #ff4d6d; opacity: 0.5; animation: float 4s infinite ease-in; z-index: 0; }
         @keyframes float {
             0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
-        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; position: relative; z-index: 1; animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; position: relative; z-index: 1; }
+
+        /* Kneeling Man Animation Area */
+        .proposal-area { height: 120px; display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .man { font-size: 50px; animation: kneel 2s forwards; transform-origin: bottom; }
+        .girl { font-size: 50px; }
+        .rose { font-size: 30px; animation: offer 2s forwards; opacity: 0; }
+
+        @keyframes kneel {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(0.7) translateY(10px); }
+        }
+        @keyframes offer {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
-        .emoji-display { font-size: 70px; margin-bottom: 20px; display: block; line-height: 1.2; }
         h1 { color: #d63384; font-size: 24px; margin-bottom: 30px; }
-        .btns { display: flex; justify-content: center; gap: 20px; height: 60px; }
-        button { padding: 15px 30px; font-size: 20px; cursor: pointer; border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #888; color: white; position: absolute; transition: 0.15s; z-index: 10; }
+        
+        /* Separate Button Styling */
+        .btns { display: flex; flex-direction: column; align-items: center; gap: 15px; min-height: 120px; }
+        button { padding: 15px 40px; font-size: 20px; cursor: pointer; border: none; border-radius: 15px; transition: 0.3s; }
+        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3); }
+        #noBtn { background-color: #888; color: white; position: relative; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div id="contentSection">
-            <span class="emoji-display">🤎🐰<br>🙇‍♂️🌹🙋‍♀️</span>
+            <div class="proposal-area">
+                <div class="man">🤵‍♂️</div>
+                <div class="rose">🌹</div>
+                <div class="girl">💃</div>
+            </div>
             <h1>Will you be my Valentine?</h1>
         </div>
-        <div id="btnGroup" class="btns">
+        <div class="btns">
             <button id="yesBtn" onclick="celebrate()">Yes</button>
             <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
         </div>
     </div>
 
     <script>
-        // Create background hearts
+        // Background Hearts
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -55,19 +70,22 @@
         }
         setInterval(createHeart, 400);
 
+        // Move No Button
         function moveButton() {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
             const noBtn = document.getElementById('noBtn');
+            // Move to fixed position so it doesn't get stuck under the card
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 150);
+            noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         }
 
         function celebrate() {
             document.getElementById('contentSection').innerHTML = 
-                '<span class="emoji-display" style="animation: bounce 0.5s infinite alternate;">🤗❤️👩‍❤️‍👨✨</span>' +
+                '<div style="font-size: 80px; animation: bounce 0.5s infinite alternate;">👩‍❤️‍👨✨</div>' +
                 '<h1>Its my pleasure baby girl ❤️</h1>';
-            document.getElementById('btnGroup').style.display = 'none';
+            document.querySelector('.btns').style.display = 'none';
             document.body.style.backgroundColor = "#ffcce0";
         }
     </script>
