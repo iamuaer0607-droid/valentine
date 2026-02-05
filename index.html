@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            background-color: #ffe6e6; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            width: 85%; 
+            max-width: 400px; 
+            position: relative; 
+            z-index: 1;
+        }
+        .gif { width: 180px; margin-bottom: 20px; border-radius: 10px; }
+        h1 { color: #d63384; font-size: 24px; margin: 10px 0; }
+        .btns { 
+            margin-top: 20px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+        }
+        button { 
+            padding: 12px 25px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 10px; 
+            transition: 0.2s; 
+        }
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { 
+            background-color: #888; 
+            color: white; 
+            position: absolute; 
+            transition: 0.1s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainBox">
+    <div id="imageContainer">
+        <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vNPyYshx6KstV5rR2s/giphy.gif" alt="Rabbit">
+    </div>
+    <h1 id="questionText">Will you be my Valentine?</h1>
+    <div class="btns"
